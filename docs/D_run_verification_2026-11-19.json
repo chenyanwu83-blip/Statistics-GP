@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-19",
+  "execution": "Rscript --vanilla, isolated package copy",
+  "exit_code": 0,
+  "raw_records": 844,
+  "analysis_records": 843,
+  "table_recalculation": {
+    "Q4_D_Table_01_descriptive.csv": {
+      "exact_recalculation_match": true,
+      "data_rows": 9
+    },
+    "Q4_D_Table_02_correlations.csv": {
+      "exact_recalculation_match": true,
+      "data_rows": 6
+    },
+    "Q4_D_Table_03_VIF.csv": {
+      "exact_recalculation_match": true,
+      "data_rows": 6
+    }
+  },
+  "figures": {
+    "count": 5,
+    "dimensions": [
+      2400,
+      1710
+    ],
+    "reexport": "passed; every PNG decoded and verified"
+  },
+  "word": "DOCX ZIP integrity passed; report sample confirmed; original two pages visually checked",
+  "original_copies": "all copies byte-identical",
+  "limits": "trial_v1 only; macOS quartz export; HTML/Word require manual update if data changes"
+}

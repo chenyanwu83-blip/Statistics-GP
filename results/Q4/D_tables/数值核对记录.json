@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-18",
+  "source": "data/raw/QQ_Music.csv",
+  "source_sha256": "a543359a2b767a27f10017a52f5c910a56d71dabf22df87e0f5e003bd0647741",
+  "raw_rows": 844,
+  "analysis_rows": 843,
+  "excluded_missing_streams": 1,
+  "summary_cells_checked": 63,
+  "correlation_cells_checked": 36,
+  "vif_cells_checked": 6,
+  "independent_checks_passed": true,
+  "max_vif": 1.6271452242684847
+}
