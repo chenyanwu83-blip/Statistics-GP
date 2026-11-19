@@ -1,5 +1,5 @@
 # 成员A：Q1广告比较、Q2小鸡饲料ANOVA
-# 状态：Q1 完成（2026-11-12）；Q2 待做。以项目根目录为工作目录。
+# 状态：Q1、Q2 均完成（2026-11-19）。以项目根目录为工作目录。
 
 # ---- Q1 ----
 red   <- c(80, 80, 78, 81, 72, 85, 96, 84, 71, 75, 98)
@@ -23,4 +23,20 @@ data("chickwts", package = "datasets")
 chicks <- chickwts
 dim(chicks); table(chicks$feed)
 any(is.na(chicks$weight))
-# Q2 分析待做
+
+fit <- aov(weight ~ feed, data = chicks)
+shapiro.test(residuals(fit))
+
+qqnorm(residuals(fit), main = "Normal Q-Q Plot of ANOVA Residuals")
+qqline(residuals(fit), col = "red")
+
+library(car)
+leveneTest(weight ~ feed, data = chicks)
+leveneTest(weight ~ feed, data = chicks, center = "mean")
+
+boxplot(weight ~ feed, data = chicks, las = 2,
+        main = "Chick weight at 6 weeks by feed supplement",
+        xlab = "Feed supplement", ylab = "Weight (g)")
+anova(fit)
+
+tapply(chicks$weight, chicks$feed, mean)
