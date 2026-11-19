@@ -1,0 +1,3 @@
+"scenario","quantity","log_scale_lower","log_scale_upper","streams_lower","streams_upper"
+"median playlist inclusions (2313), artist_count = 1, release year 2022","mean_response_CI",19.542,19.664,306752885,346730153
+"median playlist inclusions (2313), artist_count = 1, release year 2022","new_observation_PI",18.176,21.03,78280954,1358701821
