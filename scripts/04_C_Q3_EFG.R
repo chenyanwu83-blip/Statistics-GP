@@ -20,3 +20,15 @@ test_F <- chisq.test(private_top10, correct = FALSE)
 print(test_F)
 print(test_F$expected)
 print(prop.table(private_top10, margin = 1))
+
+# ---- Q3 Study G: Fuel Economy Variability ----
+auto <- ISLR2::Auto
+auto$origin_group <- factor(
+  auto$origin,
+  levels = c(1, 2, 3),
+  labels = c("American", "European", "Japanese")
+)
+
+print(table(auto$origin_group))
+print(tapply(auto$mpg, auto$origin_group, var))
+print(car::leveneTest(mpg ~ origin_group, data = auto, center = median))

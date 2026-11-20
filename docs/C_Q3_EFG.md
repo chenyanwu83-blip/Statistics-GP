@@ -31,3 +31,21 @@ Both expected counts exceed 5. The test gave χ²(1) = 160.372, *p* < 0.001. We 
 The minimum expected count was 22.65. The test gave χ²(1) = 5.083, *p* = 0.024. We reject H₀. The proportion of colleges classified as High was 12.21% among private colleges and 6.60% among public colleges. Study E tests whether a single variable follows a specified distribution, while Study F tests for an association between two variables. Because this is an observational comparison, the difference cannot be attributed to private status alone. Admissions selectivity, for example, may also contribute.
 
 [RStudio run for group verification](../figures/Q3_F_screenshot.png)
+
+### Study G — Variability in fuel economy by vehicle origin
+
+Fuel economy (`mpg`) is a quantitative ratio variable. Vehicle origin is nominal, with three groups treated as independent. Using all 392 vehicles in ISLR2::Auto, we apply a median-centred Levene test, which compares variability across groups without requiring normally distributed mpg. H₀ states that the three population variances are equal. H₁ states that at least one differs.
+
+**Table Q3-G. Fuel economy variance by origin**
+
+| Origin | Sample size | Sample variance (mpg²) |
+| --- | ---: | ---: |
+| American | 245 | 41.479 |
+| European | 68 | 43.299 |
+| Japanese | 79 | 37.089 |
+
+The test gave F(2, 389) = 0.086, *p* = 0.918. We fail to reject H₀. Although the European group had the largest sample variance, the test provides insufficient evidence of a difference in population variances across the three origins.
+
+[RStudio run for group verification](../figures/Q3_G_screenshot.png)
+
+**Integration note.** Study G uses the three origin groups specified in its question. Confirm the cross-reference to Question 2 before submission. Report drafting and language editing used AI assistance. Acknowledge it in the final group report as required by the course.
