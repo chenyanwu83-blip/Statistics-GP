@@ -1,5 +1,11 @@
-# 成员C：Q3研究E-G
-# 状态：任务骨架，尚无分析结果，不能作为完成的作业提交。
-# E/F使用ISLR2::College；G使用ISLR2::Auto三个产地组。无需先运行QQ清洗。
-# 请以项目根目录为工作目录。
-# TODO：设计、假设、方法理由、分析代码、结果与情境解释。
+# Required packages: ISLR2 and car.
+
+# ---- Q3 Study E: Public vs Private Colleges ----
+library(ISLR2)
+data(College)
+private_counts <- table(College$Private)
+print(private_counts)
+
+test_E <- chisq.test(private_counts, p = c(0.5, 0.5))
+print(test_E)
+print(test_E$expected)

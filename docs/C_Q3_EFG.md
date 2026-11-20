@@ -1,15 +1,18 @@
-# C：Q3研究E、F、G报告文字
+# Question 3 — Studies E–G
 
-状态：尚未填写。每项包括研究设计、假设、方法理由、统计量与适用自由度、p值、决策和情境结论。
+All tests use α = 0.05. Each study uses the complete set of records available in the named dataset for its analysis variables.
 
-## E：公立／私立频数是否符合各0.5模型
+### Study E — Representation of public and private colleges
 
-待分析。
+`Private` is a nominal variable with two categories. Each college is treated as an independent observation. Using all 777 colleges in ISLR2::College, a chi-square goodness-of-fit test compares the observed counts with a specified 50:50 split. The null hypothesis (H₀) assigns a probability of 0.5 to each category. The alternative (H₁) allows the probabilities to differ from 0.5.
 
-## F：Private与Top10perc>=50的High/Lower是否关联
+**Table Q3-E. Observed and expected college counts**
 
-待分析。解释与E的问题区别，避免因果结论。
+| College type | Observed | Expected under H₀ |
+| --- | ---: | ---: |
+| Public | 212 | 388.5 |
+| Private | 565 | 388.5 |
 
-## G：三个产地组的mpg总体方差是否相同
+Both expected counts exceed 5. The test gave χ²(1) = 160.372, *p* < 0.001. We reject H₀. The data provide strong evidence against a 50:50 split. Private colleges account for 72.72% of the records.
 
-待分析。使用Auto，美国、欧洲、日本均须保留；无需正态性的课程方法，若Levene须说明中心。
+[RStudio run for group verification](../figures/Q3_E_screenshot.png)
