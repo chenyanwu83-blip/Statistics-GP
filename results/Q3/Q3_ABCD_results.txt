@@ -1,0 +1,122 @@
+Run date: 2026-11-22 18:34 HKT 
+
+A raw: 322 retained: 263 missing salary: 59 
+Normality checks (Week 8):
+
+	Shapiro-Wilk normality test
+
+data:  a_x
+W = 0.97387, p-value = 0.009045
+
+
+	Shapiro-Wilk normality test
+
+data:  a_y
+W = 0.96228, p-value = 0.00156
+
+
+	F test to compare two variances
+
+data:  a_x and a_y
+F = 1.0306, num df = 138, denom df = 123, p-value = 0.8667
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.7284325 1.4529378
+sample estimates:
+ratio of variances 
+          1.030555 
+
+  League log_salary.n log_salary.mean log_salary.sd
+1      A  139.0000000       5.9326225     0.8971656
+2      N  124.0000000       5.9211673     0.8837655
+
+	Two Sample t-test
+
+data:  a_x and a_y
+t = 0.10409, df = 261, p-value = 0.9172
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.2052370  0.2281475
+sample estimates:
+mean of x mean of y 
+ 5.932622  5.921167 
+
+
+B raw: 777 retained pairs: 777 
+Mean log difference: 0.8276305 SD: 0.3044562 
+
+	Shapiro-Wilk normality test
+
+data:  difference
+W = 0.98658, p-value = 1.498e-06
+
+
+	Paired t-test
+
+data:  college_costs$log_tuition and college_costs$log_living
+t = 75.774, df = 776, p-value < 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 0.8061898 0.8490713
+sample estimates:
+mean difference 
+      0.8276305 
+
+Geometric mean ratio: 2.287891 
+
+C positive: 767 negative: 10 ties: 0 
+
+	1-sample proportions test with continuity correction
+
+data:  successes out of length(non_ties), null probability 0.5
+X-squared = 735.57, df = 1, p-value < 2.2e-16
+alternative hypothesis: true p is not equal to 0.5
+95 percent confidence interval:
+ 0.9756485 0.9934468
+sample estimates:
+      p 
+0.98713 
+
+
+D retained: 324 
+
+	Shapiro-Wilk normality test
+
+data:  d_x
+W = 0.9337, p-value = 4.757e-09
+
+
+	Shapiro-Wilk normality test
+
+data:  d_y
+W = 0.97974, p-value = 0.242
+
+  origin_group     mpg.n  mpg.mean mpg.median   mpg.IQR
+1     American 245.00000  20.03347   18.50000   9.00000
+2     Japanese  79.00000  30.45063   31.60000   8.35000
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  mpg by origin_group
+W = 2456.5, p-value < 2.2e-16
+alternative hypothesis: true location shift is not equal to 0
+
+R version 4.6.1 (2026-06-24)
+Platform: aarch64-apple-darwin23
+Running under: macOS Golden Gate 27.2.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+
+locale:
+[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
+
+time zone: Asia/Hong_Kong
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+[1] compiler_4.6.1 ISLR2_1.3-2   

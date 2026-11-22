@@ -2,6 +2,10 @@
 
 LU — CDS533 Assignment 3 小组项目
 
+## B 部分更新 2026-11-22
+
+B的Q3研究A–D补齐：检验代码、诊断图、运行记录和报告文字都进来了（scripts/03_B_Q3_ABCD.R、figures/Q3_A|B|D_*.png、results/Q3/Q3_ABCD_results.txt、docs/B_Q3_ABCD.md）。四项都按课件教过的调用写：A先Shapiro加F检验，方差齐所以用合并方差t检验；B配对t检验；C用Week 6的比例检验当符号检验，不碰分布形状假设；D按ToothGrowth那套流程用Mann-Whitney。脚本从项目根目录直接source即可复现，不依赖QQ数据。A的Q1/Q2互查、报告整合与最终打包接下来由B推进。
+
 ## D 部分更新 2026-11-19
 
 D的Q4探索分析、变量理由、相关与VIF、五图三表及经DeepL润色和核对的报告文稿已完成，详见[交接说明](docs/D_handoff_2026-11-19.md)。统一使用trial_v1的843条完整记录；最终数据规则确认及对E模型的复核仍待协作。以下初始状态描述应结合本次D更新和各成员后续提交阅读。
@@ -25,7 +29,7 @@ D的Q4探索分析、变量理由、相关与VIF、五图三表及经DeepL润色
 | --- | --- |
 | scripts/01_C_data_preparation.R | C：QQ读取、初检、试用数据生成 |
 | scripts/02_A_Q1_Q2.R | A：Q1/Q2，待编写 |
-| scripts/03_B_Q3_ABCD.R | B：Q3 A-D，待编写 |
+| scripts/03_B_Q3_ABCD.R | B：Q3 A-D 已完成（2026-11-22） |
 | scripts/04_C_Q3_EFG.R | C：Q3 E-G，待编写 |
 | scripts/05_D_Q4_EDA.R | D：Q4 EDA与变量依据，待编写 |
 | scripts/06_E_Q4_models.R | E：Q4模型、诊断与预测，待编写 |
