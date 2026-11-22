@@ -1,0 +1,32 @@
+% q4_variables.tex - Question 4 part 2 (OWNER: C) - prose integrated verbatim from docs/C_Q4_variable_roles.md
+\subsection*{4.2 Variable Types and Analytical Roles}
+
+Our research question is whether QQ Music playlist inclusion is associated with song streams after accounting for artist count, release year, danceability, energy and acousticness. Each observation is one song record. We use \texttt{log(streams)} as the response and \texttt{log(in\_QQ\_playlists)} as the main predictor. In R, \texttt{log()} denotes the natural logarithm.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption*{Table Q4-C1: Variable types and analytical roles.}
+  \setlength{\tabcolsep}{3.5pt}
+  \begin{tabular}{p{2.9cm}p{5.4cm}p{2.1cm}p{4.3cm}}
+    \toprule
+    Variable & Data type and measurement scale & Independent / dependent & Predictor / response \\
+    \midrule
+    \texttt{streams} & Quantitative, discrete count; ratio scale & Dependent & Response, entered as \texttt{log(streams)} \\
+    \texttt{in\_QQ\_playlists} & Quantitative, discrete count; ratio scale & Independent & Main predictor, entered as \texttt{log(in\_QQ\_playlists)} \\
+    \texttt{artist\_count} & Quantitative, discrete count; ratio scale & Independent & Candidate predictor \\
+    \texttt{released\_year} & Quantitative; interval scale & Independent & Candidate predictor \\
+    \texttt{danceability\_\%} & Quantitative score from 0 to 100; approximately interval & Independent & Candidate predictor \\
+    \texttt{energy\_\%} & Quantitative score from 0 to 100; approximately interval & Independent & Candidate predictor \\
+    \texttt{acousticness\_\%} & Quantitative score from 0 to 100; approximately interval & Independent & Candidate predictor \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The original stream and playlist counts have meaningful zeros. Release year is interval-scaled because differences between years are meaningful, whereas ratios are not. The data dictionary defines the three audio features as scores, so we treat them as approximately interval rather than assuming that a score of 80 represents twice as much as 40. The log-transformed counts are analysed as continuous numerical variables; the table describes their original measurement scales.
+
+Danceability, energy and acousticness were evaluated as candidate predictors in the full model. The selected model (m2) retained log playlist inclusions, artist count and release year. All candidate models used the same complete-case sample.
+
+The current analysis uses 843 complete records from \texttt{QQ\_Music\_trial\_v1.csv}. The working dataset retains all 844 rows, with the invalid \texttt{streams} entry in source data row 509 recorded as \texttt{NA}. Records with blank \texttt{key} values are retained because \texttt{key} is not included. The four candidate duplicate pairs are also retained pending further review.
+
+\texttt{track\_name} and \texttt{artist(s)\_name} are nominal labels used for checking record identity; neither is a predictor nor a response in this analysis. Independent and dependent refer to model roles and do not imply a causal relationship.

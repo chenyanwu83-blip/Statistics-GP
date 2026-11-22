@@ -1,0 +1,49 @@
+% q4_predictors.tex - Question 4 parts 3(a) 3(b) (OWNER: D) - prose integrated verbatim from report/Q4_D_report_final.md
+\subsection*{4.3(a) Candidate predictor selection}
+
+We included playlist inclusions as they are the main variable of interest. The log transformation reduces the curvature seen in Figure Q4-D3, making it a reasonable candidate for the model. As all observed playlist counts and non-missing stream counts are positive, no constant was added before taking logarithms.
+
+We included artist count to account for differences between solo songs and collaborations. This variable ranges from 1 to 8, with a median of 1.000. Records involving many artists are sparse, so conclusions about these small groups require caution. The release year was included because earlier releases may have had more time to accumulate streams and playlist inclusions. Its median is 2022, with a range of 1942--2023. However, release year is not a direct measure of time spent on the platform.
+
+Danceability describes suitability for dancing, energy describes perceived intensity, and acousticness describes acoustic character. Their observed ranges are 23--96, 9--97, and 0--97, respectively. We included these three features to account for selected differences in the songs themselves. The correlation and VIF checks do not indicate a need to remove them because of serious multicollinearity. Song and artist names are identifiers. We excluded key and other platform indicators to focus the analysis on the agreed question regarding QQ playlist inclusion. This is a scope decision and does not imply that those variables are unrelated to popularity.
+
+\subsection*{4.3(b) Correlation and multicollinearity}
+
+We calculated the Pearson correlations between the six numerical predictors, excluding the response variable (see Table Q4-D2). In this table, playlist inclusions are on the natural logarithm scale. The largest absolute pairwise correlation is between energy and acousticness, at $-0.595$. The correlation between log playlist inclusions and release year is $-0.397$. However, these results alone cannot rule out multicollinearity because a predictor can be related to several other predictors simultaneously.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption*{Table Q4-D2: Pearson correlations among the numerical predictors ($n = 843$).}
+  \begin{tabular}{lrrrrrr}
+    \toprule
+     & \shortstack[l]{ln(QQ\\playlists)} & \shortstack[l]{Artist\\count} & \shortstack[l]{Release\\year} & Danceability & Energy & \shortstack[l]{Acoustic-\\ness} \\
+    \midrule
+    ln(QQ playlists)      & 1      & $-0.097$ & $-0.397$ & $-0.113$ & $-0.004$ & $-0.048$ \\
+    Artist count          & $-0.097$ & 1      & 0.094    & 0.198    & 0.132    & $-0.120$ \\
+    Release year          & $-0.397$ & 0.094 & 1        & 0.183    & 0.110    & $-0.137$ \\
+    Danceability          & $-0.113$ & 0.198 & 0.183    & 1        & 0.200    & $-0.256$ \\
+    Energy                & $-0.004$ & 0.132 & 0.110    & 0.200    & 1        & $-0.595$ \\
+    Acousticness          & $-0.048$ & $-0.120$ & $-0.137$ & $-0.256$ & $-0.595$ & 1 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+We therefore calculated the variance inflation factors for the candidate linear model containing the six predictors (see Table Q4-D3). The VIFs range from 1.058 to 1.627. The regression lecture identifies values around or above 5 as indicating the need to examine collinearity. All of our values are below 2, so these diagnostics do not indicate serious multicollinearity in this candidate model. We will not remove any of the six predictors solely because of multicollinearity. This does not establish that the model is optimal or that its other assumptions are satisfied.
+
+\begin{table}[htbp]
+  \centering
+  \caption*{Table Q4-D3: Variance inflation factors for the candidate model with six predictors.}
+  \begin{tabular}{lr}
+    \toprule
+    Variable & VIF \\
+    \midrule
+    ln(QQ playlists) & 1.215 \\
+    Artist count & 1.058 \\
+    Release year & 1.239 \\
+    Danceability & 1.133 \\
+    Energy & 1.563 \\
+    Acousticness & 1.627 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
