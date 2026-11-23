@@ -1,9 +1,10 @@
-% q4_eda.tex - Question 4 parts 1(a) 1(b) (OWNER: D) - prose integrated verbatim from report/Q4_D_report_final.md
+% q4_eda.tex - Question 4 parts 1(a) 1(b) (OWNER: D) - revised from report/Q4_D_report_final.md
 \section{Question 4: What Makes a Hit? Exploring QQ Music}
 
+\FloatBarrier
 \subsection*{4.1(a) Data and exploratory analysis}
 
-The supplied dataset contains 844 song records. We used C's trial\_v1 working data. One invalid text value in streams was recorded as missing. We selected six candidate predictors and one response variable, retaining 843 records with complete values for these variables. Records with a blank key were retained because key was not included in this analysis. All the figures, summary statistics, correlations and variance inflation factors below are based on the same 843 records.
+The supplied dataset contains 844 song records. We prepared a working copy of the supplied CSV without changing the original file. One invalid text value in streams was recorded as missing. We selected six candidate predictors and one response variable, retaining 843 records with complete values for these variables. Records with a blank key were retained because key was not included in this analysis. All the figures, summary statistics, correlations and variance inflation factors below are based on the same 843 records.
 
 \begin{table}[htbp]
   \centering
@@ -22,7 +23,7 @@ The supplied dataset contains 844 song records. We used C's trial\_v1 working da
     Release year & 843 & 2018.053 & 11.067 & 1942 & 2020 & 2022 & 2022 & 2023 \\
     Danceability (0--100) & 843 & 66.471 & 14.850 & 23 & 56 & 68 & 78 & 96 \\
     Energy (0--100) & 843 & 63.745 & 16.692 & 9 & 53 & 65 & 76.5 & 97 \\
-    Acousticness (0--100) & 843 & 27.000 & 26.334 & 0 & 5 & 17 & 43 & 97 \\
+    Acousticness (0--100) & 843 & 26.999 & 26.334 & 0 & 5 & 17 & 43 & 97 \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -31,13 +32,13 @@ Table Q4-D1 shows that the mean total streams is 536.062 million and the median 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{Q4_D_Figure_01.png}
+  \includegraphics[width=0.86\textwidth]{Q4_D_Figure_01.png}
   \caption*{Figure Q4-D1: Distribution of total streams.}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{Q4_D_Figure_02.png}
+  \includegraphics[width=0.86\textwidth]{Q4_D_Figure_02.png}
   \caption*{Figure Q4-D2: Distribution of log streams.}
 \end{figure}
 
@@ -45,13 +46,13 @@ Figure Q4-D3 shows a positive but curved association between QQ playlist inclusi
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{Q4_D_Figure_03.png}
+  \includegraphics[width=0.86\textwidth]{Q4_D_Figure_03.png}
   \caption*{Figure Q4-D3: QQ playlist inclusions and log streams.}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{Q4_D_Figure_04.png}
+  \includegraphics[width=0.86\textwidth]{Q4_D_Figure_04.png}
   \caption*{Figure Q4-D4: Log playlist inclusions and log streams.}
 \end{figure}
 
@@ -59,12 +60,13 @@ Figure Q4-D5 shows a negative association between energy and acousticness. Their
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{Q4_D_Figure_05.png}
+  \includegraphics[width=0.86\textwidth]{Q4_D_Figure_05.png}
   \caption*{Figure Q4-D5: Energy and acousticness.}
 \end{figure}
 
+\FloatBarrier
 \subsection*{4.1(b) Research question and relevance}
 
-Our research question is: How is QQ Music playlist inclusion associated with the natural logarithm of cumulative song streams, after accounting for artist count, release year, danceability, energy and acousticness?
+Our research question is: How is the number of QQ Music playlists including a song associated with the natural logarithm of cumulative song streams, after accounting for artist count, release year, danceability, energy and acousticness?
 
-The response variable is log(streams). QQ playlist inclusion is the main predictor, with its log transformation supported by the exploratory plots. The other candidate predictors are artist count, release year, danceability, energy, and acousticness. Playlist inclusion is important to the QQ Music team as a source of exposure. Studying its association with streams while accounting for selected song characteristics can inform the evaluation of playlist promotion. However, popular songs may also be more likely to be included in playlists. Therefore, the observed association cannot be interpreted as the effect of adding a song to a playlist.
+The response variable is log(streams). The number of QQ playlists including a song is the main predictor, with its log transformation supported by the exploratory plots. The other candidate predictors are artist count, release year, danceability, energy, and acousticness. Playlist inclusion is important to the QQ Music team as a source of exposure. Studying its association with streams while accounting for selected song characteristics can inform the evaluation of playlist promotion. However, popular songs may also be more likely to be included in playlists. Therefore, the observed association cannot be interpreted as the effect of adding a song to a playlist.

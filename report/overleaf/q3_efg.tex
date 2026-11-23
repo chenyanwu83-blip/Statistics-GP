@@ -1,8 +1,9 @@
-% q3_efg.tex - Question 3 Studies E-G (OWNER: C) - prose integrated verbatim from docs/C_Q3_EFG.md
+% q3_efg.tex - Question 3 Studies E-G (OWNER: C) - revised from docs/C_Q3_EFG.md
 \section{Question 3, Studies E--G}
 
 All tests use $\alpha = 0.05$. Each study uses the complete set of records available in the named dataset for its analysis variables.
 
+\FloatBarrier
 \subsection*{Study E --- Representation of public and private colleges}
 
 \texttt{Private} is a nominal variable with two categories. Each college is treated as an independent observation. Using all 777 colleges in \texttt{ISLR2::College}, a chi-square goodness-of-fit test compares the observed counts with a specified 50:50 split. The null hypothesis ($\Hnull$) assigns a probability of 0.5 to each category. The alternative ($\Halt$) allows the probabilities to differ from 0.5.
@@ -22,12 +23,7 @@ All tests use $\alpha = 0.05$. Each study uses the complete set of records avail
 
 Both expected counts exceed 5. The test gave $\chisq(1) = 160.372$, $\pval < 0.001$. We reject $\Hnull$. The data provide strong evidence against a 50:50 split. Private colleges account for 72.72\% of the records.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\textwidth]{Q3_E_screenshot.png}
-  \caption*{Study E: RStudio run for group verification.}
-\end{figure}
-
+\FloatBarrier
 \subsection*{Study F --- College status and incoming student profile}
 
 \texttt{Private} and the High/Lower student profile are categorical variables. A college is classified as High if at least 50\% of its incoming students were in the top 10\% of their high school class. Using the same 777 colleges, we apply Pearson's chi-square test of independence without Yates' correction, treating colleges as independent observations. $\Hnull$ states that college status and student profile are independent. $\Halt$ states that they are associated.
@@ -47,12 +43,7 @@ Both expected counts exceed 5. The test gave $\chisq(1) = 160.372$, $\pval < 0.0
 
 The minimum expected count was 22.65. The test gave $\chisq(1) = 5.083$, $\pval = 0.024$. We reject $\Hnull$. The proportion of colleges classified as High was 12.21\% among private colleges and 6.60\% among public colleges. Study E tests whether a single variable follows a specified distribution, while Study F tests for an association between two variables. Because this is an observational comparison, the difference cannot be attributed to private status alone. Admissions selectivity, for example, may also contribute.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\textwidth]{Q3_F_screenshot.png}
-  \caption*{Study F: RStudio run for group verification.}
-\end{figure}
-
+\FloatBarrier
 \subsection*{Study G --- Variability in fuel economy by vehicle origin}
 
 Fuel economy (\texttt{mpg}) is a quantitative ratio variable. Vehicle origin is nominal, with three groups treated as independent. Using all 392 vehicles in \texttt{ISLR2::Auto}, we apply a median-centred Levene test, which compares variability across groups without requiring normally distributed mpg. $\Hnull$ states that the three population variances are equal. $\Halt$ states that at least one differs.
@@ -73,8 +64,3 @@ Fuel economy (\texttt{mpg}) is a quantitative ratio variable. Vehicle origin is 
 
 The test gave $F(2, 389) = 0.086$, $\pval = 0.918$. We fail to reject $\Hnull$. Although the European group had the largest sample variance, the test provides insufficient evidence of a difference in population variances across the three origins.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\textwidth]{Q3_G_screenshot.png}
-  \caption*{Study G: RStudio run for group verification.}
-\end{figure}

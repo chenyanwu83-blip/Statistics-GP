@@ -1,11 +1,12 @@
-% q2.tex - Question 2 (OWNER: A) - prose integrated verbatim from docs/A_Q2.md
+% q2.tex - Question 2 (OWNER: A) - revised from docs/A_Q2.md
 \section{Question 2: Which Feed Helps Chicks Grow?}
 
 The \texttt{chickwts} dataset is complete with 71 observations and no missing values on either variable. All 71 chicks were retained in the analysis; the residual degrees of freedom ($65 = 71 - 6$) confirm that the full sample entered the model.
 
+\FloatBarrier
 \subsection*{(a) Hypotheses and assumptions}
 
-Define $\mu_i$ is the population mean of the body weight of chicks after six weeks of being fed the feed $i$ ($i =$ casein, horsebean, linseed, meatmeal, soybean, sunflower).
+Let $\mu_i$ denote the population mean of the body weight of chicks after six weeks of being fed the feed $i$ ($i =$ casein, horsebean, linseed, meatmeal, soybean, sunflower).
 
 \[
 \Hnull\colon \mu_1 = \mu_2 = \mu_3 = \mu_4 = \mu_5 = \mu_6
@@ -22,8 +23,9 @@ Three main assumptions apply.
 
 \textbf{Homogeneity of variance:} The six population variances should be equal. This is checked with Levene's test centred on group medians (the default in the \texttt{car} package), $F(5, 65) = 0.749$, $\pval = 0.590$; the mean-centred version gives $F = 0.987$, $\pval = 0.432$, with the same conclusion. Neither version rejects equal variances.
 
-All three assumptions are acceptable, so a one-way ANOVA is appropriate for these data.
+The design and diagnostics provide reasonable support for a one-way ANOVA; non-significant diagnostic tests do not prove that its assumptions hold exactly.
 
+\FloatBarrier
 \subsection*{(b) Plot, ANOVA table and decision}
 
 \begin{table}[htbp]
@@ -54,10 +56,11 @@ Figure Q2-1 (labelled boxplot of weight by feed) shows the highest weights under
   \caption*{Figure Q2-2: Residual Q--Q plot for the one-way ANOVA.}
 \end{figure}
 
+\FloatBarrier
 \subsection*{(c) Interpretation of the claim}
 
 This argument does not hold. A significant ANOVA F-test is an omnibus result: it only rejects the null hypothesis that ``all six population means are equal,'' establishing that ``at least one feed is different,'' but it does not establish that ``each feed is different from every other feed.'' For example, a data pattern where ``five feeds share the same mean and only one is lower'' would also yield a significant F-statistic.
 
-The highest sample mean does not imply that it is significantly superior to all other groups: sunflower (328.9 g) exceeded casein (323.6 g) by only 5.3 g, while the standard error of the difference between the two group means is approximately 22 g, which is a gap that is far from significant.
+The highest sample mean does not imply that it is significantly superior to all other groups: sunflower (328.9 g) exceeded casein (323.6 g) by only 5.3 g, while within-group variation is substantial. This descriptive ranking alone does not establish a statistically significant pairwise difference.
 
 A reliable conclusion that can be drawn from this analysis is that the average weights of the six feeds are not all equal ($F(5, 65) = 15.365$, $\pval < 0.001$); descriptive evidence indicates that the weight for horsebean is lower, while those for sunflower and casein are higher. To identify which specific pairings differ, we would need to perform post-hoc multiple comparisons, such as Tukey's HSD, which controls the family-wise error rate across all 15 pairwise comparisons; however, this is not required for this problem.

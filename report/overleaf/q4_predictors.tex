@@ -1,4 +1,5 @@
-% q4_predictors.tex - Question 4 parts 3(a) 3(b) (OWNER: D) - prose integrated verbatim from report/Q4_D_report_final.md
+% q4_predictors.tex - Question 4 parts 3(a) 3(b) (OWNER: D) - revised from report/Q4_D_report_final.md
+\FloatBarrier
 \subsection*{4.3(a) Candidate predictor selection}
 
 We included playlist inclusions as they are the main variable of interest. The log transformation reduces the curvature seen in Figure Q4-D3, making it a reasonable candidate for the model. As all observed playlist counts and non-missing stream counts are positive, no constant was added before taking logarithms.
@@ -7,6 +8,7 @@ We included artist count to account for differences between solo songs and colla
 
 Danceability describes suitability for dancing, energy describes perceived intensity, and acousticness describes acoustic character. Their observed ranges are 23--96, 9--97, and 0--97, respectively. We included these three features to account for selected differences in the songs themselves. The correlation and VIF checks do not indicate a need to remove them because of serious multicollinearity. Song and artist names are identifiers. We excluded key and other platform indicators to focus the analysis on the agreed question regarding QQ playlist inclusion. This is a scope decision and does not imply that those variables are unrelated to popularity.
 
+\FloatBarrier
 \subsection*{4.3(b) Correlation and multicollinearity}
 
 We calculated the Pearson correlations between the six numerical predictors, excluding the response variable (see Table Q4-D2). In this table, playlist inclusions are on the natural logarithm scale. The largest absolute pairwise correlation is between energy and acousticness, at $-0.595$. The correlation between log playlist inclusions and release year is $-0.397$. However, these results alone cannot rule out multicollinearity because a predictor can be related to several other predictors simultaneously.
