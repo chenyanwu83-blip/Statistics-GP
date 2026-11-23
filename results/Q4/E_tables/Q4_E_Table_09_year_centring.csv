@@ -1,0 +1,5 @@
+"term","centred_estimate","uncentred_term","uncentred_estimate","year_reference"
+"(Intercept)",14.3802627602272,"(Intercept)",3.15678149231804,2022
+"log_playlists",0.688947183272103,"log_playlists",0.688947183272109,2022
+"artist_count",-0.114249569875879,"artist_count",-0.114249569875881,2022
+"released_year_c",0.00555068311963729,"released_year",0.0055506831196385,2022

@@ -1,3 +1,3 @@
-"scenario","quantity","log_scale_lower","log_scale_upper","streams_lower","streams_upper"
-"median playlist inclusions (2313), artist_count = 1, release year 2022","mean_response_CI",19.542,19.664,306752885,346730153
-"median playlist inclusions (2313), artist_count = 1, release year 2022","new_observation_PI",18.176,21.03,78280954,1358701821
+"playlists","artist_count","released_year","quantity","point_log_streams","point_streams","point_streams_million","log_scale_lower","log_scale_upper","streams_lower","streams_upper","million_streams_lower","million_streams_upper","interval_method"
+2313,1,2022,"conditional_geometric_mean_CI",19.6028052123745,326129536.741212,326.129536741212,19.5414645581983,19.6641458665507,306725742.139465,346760835.89579,306.725742139465,346.76083589579,"Student t, 839 residual df; normal homoscedastic log errors"
+2313,1,2022,"single_new_song_PI",19.6028052123745,326129536.741212,326.129536741212,18.1737533488409,21.0318570759081,78119741.0223299,1361505726.24959,78.1197410223298,1361.50572624959,"Student t, 839 residual df; normal homoscedastic log errors"
