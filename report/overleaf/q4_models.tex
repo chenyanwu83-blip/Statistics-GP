@@ -26,12 +26,21 @@ m2 & 1861.700 & 0.614 \\
 m3 & 1865.156 & 0.615 \\\bottomrule
 \end{tabular}\end{table}
 
+\begin{table}[htbp]\centering
+\caption*{Table Q4-E2: Playlist elasticity across candidate models.}
+\begin{tabular}{lrl}\toprule
+Model & Playlist coefficient & Controls \\\midrule
+m1 & 0.678 & None \\
+m2 & 0.689 & Artist count and year \\
+m3 & 0.692 & All five prespecified characteristics \\\bottomrule
+\end{tabular}\end{table}
+
 The selected model is
 \[
 \widehat{E[\log(\text{streams})\mid X]}=
 14.380263+0.688947\log(P)-0.114250A+0.005551Y_c.
 \]
-The formula displays extra digits to limit rounding error; all predictions use the unrounded R coefficients. The residual sum of squares is 443.923 on 839 degrees of freedom and $R^2=0.614$.
+The formula displays extra digits to limit rounding error; all predictions use the unrounded R coefficients. The residual sum of squares is 443.922 on 839 degrees of freedom and $R^2=0.614$.
 
 \textbf{Two coefficients in context.} In m2, the playlist elasticity is 0.689 (95\% CI $[0.649,\ 0.729]$): a 1\% increase in playlist count is associated with approximately 0.689\% higher conditional geometric-mean streams, holding artist count and release year fixed. Doubling playlist count corresponds to a factor of approximately 1.612 (61.2\% higher). Each additional artist is associated with a factor of $\exp(-0.114250)=0.892$, or about 10.8\% lower conditional geometric-mean streams, with playlist count and release year fixed. The artist coefficient has 95\% CI $[-0.173,\ -0.055]$. Both associations have $\pval<0.001$ and are not causal effects.
 
