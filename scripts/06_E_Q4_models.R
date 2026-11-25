@@ -7,11 +7,12 @@
 # 候选控制 artist_count、released_year、danceability_%、energy_%、
 # acousticness_%；key 不入模。分析样本 = 上述变量完整的 843 条。
 # 以项目根目录为工作目录：source("scripts/06_E_Q4_models.R")
-# 依赖：base R；绘图导出用 png()。
+# 依赖：base R和car；绘图导出用png()。
 # ============================================================
 
 # ===== 1. 数据准备（复用 C 的脚本，得到 qq_work）=====
 source("scripts/01_C_data_preparation.R")
+if (!requireNamespace("car", quietly = TRUE)) stop("Install car before running this script.")
 
 model_vars <- c("streams", "in_QQ_playlists", "artist_count", "released_year",
                 "danceability_%", "energy_%", "acousticness_%")
@@ -31,7 +32,7 @@ qq$log_playlists  <- log(qq$in_QQ_playlists)
 year_reference <- 2022
 qq$released_year_c <- qq$released_year - year_reference
 
-# ===== 3. 候选模型（嵌套，镜像研究问题）=====
+# ===== 3. 比较三个嵌套模型=====
 f1 <- log_streams ~ log_playlists
 f2 <- update(f1, . ~ . + artist_count + released_year_c)
 f3 <- update(f2, . ~ . + `danceability_%` + `energy_%` + `acousticness_%`)
@@ -95,14 +96,8 @@ out_coef <- data.frame(
 write.csv(out_coef, "results/Q4/E_tables/Q4_E_Table_03_coefficients_CI.csv",
           row.names = FALSE, fileEncoding = "UTF-8")
 
-# VIF（最终模型，base R 手写，与 D 的六预测变量 VIF 互查不冲突）
-vif_manual <- function(fit) {
-  X <- model.matrix(fit)[, -1, drop = FALSE]
-  v <- sapply(seq_len(ncol(X)), function(j)
-    1 / (1 - summary(lm(X[, j] ~ X[, -j, drop = FALSE]))$r.squared))
-  round(setNames(v, colnames(X)), 3)
-}
-vif_final <- vif_manual(final)
+# VIF for the final model; use the same car function as the candidate-model check.
+vif_final <- round(car::vif(final), 3)
 cat("\n── VIF（最终模型 m2）──\n"); print(vif_final)
 write.csv(data.frame(term = names(vif_final), VIF = vif_final),
           "results/Q4/E_tables/Q4_E_Table_04_VIF_final_model.csv",
@@ -121,6 +116,7 @@ plot(qq$log_playlists, residuals(final),
      xlab = "log(in_QQ_playlists)", ylab = "Residuals",
      main = "Residuals vs log playlist inclusions")
 abline(h = 0, lty = 2)
+# LOWESS is a descriptive trend, not an additional significance test.
 lines(lowess(qq$log_playlists, residuals(final)), col = "firebrick", lwd = 2)
 invisible(dev.off())
 
@@ -210,7 +206,7 @@ write.csv(pred_tab, "results/Q4/E_tables/Q4_E_Table_05_prediction.csv",
 cat("\n预测值和区间（百万次）：\n")
 print(pred_tab[, c("quantity", "point_streams_million",
                   "million_streams_lower", "million_streams_upper")])
-cat("\n区间依赖模型误差假设；异常残差和异方差会影响覆盖率，不能写成假设已全部满足。\n")
+cat("\n残差偏离和异方差可能影响区间覆盖率。\n")
 
 # 保存参数化对照和运行信息，便于报告更新。
 parameterisation <- data.frame(

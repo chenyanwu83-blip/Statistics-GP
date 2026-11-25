@@ -8,7 +8,7 @@ All tests are two-sided with $\alpha = 0.05$ and 95\% confidence intervals. The 
 
 \textbf{Design.} The response is the natural log of 1987 salary, a quantitative variable; the two leagues are independent groups. Of 322 players, 59 have missing salaries and none has a non-positive salary, leaving $n = 139$ American and $n = 124$ National. $\Hnull$: the two population mean log salaries are equal; $\Halt$: they differ.
 
-\textbf{Method.} Shapiro--Wilk rejects normality in both groups ($W = 0.974$, $\pval = 0.009$; $W = 0.962$, $\pval = 0.002$), but both samples are large (Week 6: $n \geq 30$, CLT) and the question asks about the population \emph{mean}, so a two-sample t-test is the course method here. The Week 7 F-test for equal variances gave $F(138, 123) = 1.031$, $\pval = 0.867$, so the pooled t-test was used. This preliminary result does not prove equality of variances; Welch's test provides the same substantive conclusion for these data.
+\textbf{Method.} Shapiro--Wilk rejects normality in both groups ($W = 0.974$, $\pval = 0.009$; $W = 0.962$, $\pval = 0.002$), but both samples are large (Week 6: $n \geq 30$, CLT) and the question asks about the population \emph{mean}, so a two-sample t-test is the course method here. The Week 7 F-test for equal variances gave $F(138, 123) = 1.031$, $\pval = 0.867$, so the pooled t-test was used. This preliminary result does not prove equality of variances.
 
 \textbf{Result.} $t(261) = 0.104$, $\pval = 0.917$, 95\% CI for the difference in means $[-0.205,\ 0.228]$. Group means are nearly identical (5.933 vs 5.921). We fail to reject $\Hnull$: no statistically significant difference in population mean log salaries was found. The interval corresponds to a geometric-mean salary ratio of about 0.81--1.26 and remains compatible with potentially meaningful differences in either direction; the result does not establish equivalence.
 
@@ -40,7 +40,7 @@ All tests are two-sided with $\alpha = 0.05$ and 95\% confidence intervals. The 
 
 \textbf{Method.} This is a large-sample sign-proportion test, implemented using the one-sample proportion test \texttt{prop.test(x, n, p = 0.5)}. It uses only the counts of positive and negative differences, so it requires neither normality nor symmetry of the cost differences. It still treats colleges as independent units and uses a binomial sampling model with a large-sample approximation.
 
-\textbf{Result.} $\hat{p} = 0.987$, 95\% CI $[0.976,\ 0.993]$, $\chisq(1) = 735.570$ with continuity correction, $\pval < 0.001$. We reject $\Hnull$: at almost every college, tuition is the larger bill. An exact binomial test was run as a cross-check and gives the same decision, but the course method is what is reported here.
+\textbf{Result.} $\hat{p} = 0.987$, 95\% CI $[0.976,\ 0.993]$, $\chisq(1) = 735.570$ with continuity correction, $\pval < 0.001$. We reject $\Hnull$: at almost every college, tuition is the larger bill.
 
 \textbf{Compared with Study B.} Study B concerns the population mean log-cost difference and uses the magnitudes of paired differences. Study C concerns the probability of a positive difference and uses signs only. Their decisions can differ because these are different parameters. Here both point towards higher tuition costs, but they provide complementary information rather than a complete description of the distributions.
 

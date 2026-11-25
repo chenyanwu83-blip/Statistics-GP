@@ -161,6 +161,7 @@ local({
   print(shapiro_B_diff)
   print(result_B)
   cat('Geometric mean ratio:', exp(mean(difference)), '\n')
+  cat('Geometric mean ratio 95% CI:', exp(result_B$conf.int), '\n')
   cat('\nC positive:', successes, 'negative:', sum(non_ties < 0),
       'ties:', sum(cost_difference == 0), '\n'); print(result_C)
   cat('\nD retained:', nrow(cars_two), '\n')
@@ -315,6 +316,18 @@ qq_work <- local({
   )
   write.csv(column_audit, "results/data_quality/column_audit.csv",
             row.names = FALSE, fileEncoding = "UTF-8")
+  # Check exact duplicates separately from repeated song/artist labels.
+  exact_duplicate_count <- sum(duplicated(qq_raw))
+  identity <- qq_raw[, c("track_name", "artist(s)_name")]
+  repeated <- duplicated(identity) | duplicated(identity, fromLast = TRUE)
+  duplicate_label_groups <- nrow(unique(identity[repeated, , drop = FALSE]))
+  duplicate_audit <- data.frame(exact_duplicate_rows = exact_duplicate_count,
+                                repeated_label_groups = duplicate_label_groups,
+                                repeated_label_rows = sum(repeated))
+  print(duplicate_audit)
+  write.csv(duplicate_audit, "results/data_quality/duplicate_audit.csv", row.names = FALSE)
+  write.csv(data.frame(source_row = which(repeated), qq_raw[repeated, ], check.names = FALSE),
+            "results/data_quality/repeated_song_artist_labels.csv", row.names = FALSE)
   capture.output(sessionInfo(), file = "results/data_quality/sessionInfo.txt")
   qq_work
 })
@@ -434,7 +447,7 @@ local({
   year_reference <- 2022
   qq$released_year_c <- qq$released_year - year_reference
 
-  # ===== 3. 候选模型（嵌套，镜像研究问题）=====
+  # ===== 3. 比较三个嵌套模型=====
   f1 <- log_streams ~ log_playlists
   f2 <- update(f1, . ~ . + artist_count + released_year_c)
   f3 <- update(f2, . ~ . + `danceability_%` + `energy_%` + `acousticness_%`)
@@ -497,14 +510,8 @@ local({
   write.csv(out_coef, "results/Q4/E_tables/Q4_E_Table_03_coefficients_CI.csv",
             row.names = FALSE, fileEncoding = "UTF-8")
 
-  # VIF（最终模型，base R 手写，与 D 的六预测变量 VIF 互查不冲突）
-  vif_manual <- function(fit) {
-    X <- model.matrix(fit)[, -1, drop = FALSE]
-    v <- sapply(seq_len(ncol(X)), function(j)
-      1 / (1 - summary(lm(X[, j] ~ X[, -j, drop = FALSE]))$r.squared))
-    round(setNames(v, colnames(X)), 3)
-  }
-  vif_final <- vif_manual(final)
+  # VIF for the final model; use the same car function as the candidate-model check.
+  vif_final <- round(car::vif(final), 3)
   cat("\n── VIF（最终模型 m2）──\n"); print(vif_final)
   write.csv(data.frame(term = names(vif_final), VIF = vif_final),
             "results/Q4/E_tables/Q4_E_Table_04_VIF_final_model.csv",
@@ -523,6 +530,7 @@ local({
        xlab = "log(in_QQ_playlists)", ylab = "Residuals",
        main = "Residuals vs log playlist inclusions")
   abline(h = 0, lty = 2)
+  # LOWESS is a descriptive trend, not an additional significance test.
   lines(lowess(qq$log_playlists, residuals(final)), col = "firebrick", lwd = 2)
   invisible(dev.off())
 
@@ -610,7 +618,7 @@ local({
   cat("\n预测值和区间（百万次）：\n")
   print(pred_tab[, c("quantity", "point_streams_million",
                     "million_streams_lower", "million_streams_upper")])
-  cat("\n区间依赖模型误差假设；异常残差和异方差会影响覆盖率，不能写成假设已全部满足。\n")
+  cat("\n残差偏离和异方差可能影响区间覆盖率。\n")
 
   # 保存参数化对照和运行信息，便于报告更新。
   parameterisation <- data.frame(
